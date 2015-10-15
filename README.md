@@ -8,4 +8,9 @@ You need to modify index3.html manually to change the connection of those three 
 I haven't got time to write a readme. Check this site next week to see read me.<br />
 
 Cheers,<br />
-Wuga
+Wuga<br />
+
+Make it work
+===
+1. To run this code, you need to import it as a eclipse project. you also need pydev.<br />
+2. Modify SFHousePrice/src/Constant/filelocations.py to rebuild path to DATA<br />
