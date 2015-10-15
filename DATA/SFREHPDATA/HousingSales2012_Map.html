@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<head>
+   <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" />
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js" charset="utf-8"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+
+   
+   
+   
+   
+
+   <style>
+
+      html, body {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+      }
+
+      .legend {
+          padding: 0px 0px;
+          font: 10px sans-serif;
+          background: white;
+          background: rgba(255,255,255,0.8);
+          box-shadow: 0 0 15px rgba(0,0,0,0.2);
+          border-radius: 5px;
+      }
+
+      .key path {
+        display: none;
+      }
+
+   </style>
+</head>
+
+<body>
+
+   <div id="map" style="width: 100%; height: 100%"></div>
+
+   <script>
+
+      queue()
+          .defer(d3.json, '/Users/Wuga/Documents/DATA/SFREHPDATA/HousingSales2012PL_voronoi.json')
+          .await(makeMap)
+
+      function onEachFeature(feature, layer) {
+          // does this feature have a property named popupContent?
+          if (feature.properties && feature.properties.popupContent) {
+              layer.bindPopup(feature.properties.popupContent);
+              }
+          };
+
+      function makeMap(error, gjson_1) {
+
+          
+
+          
+
+          function matchKey(datapoint, key_variable){
+              if (typeof key_variable[0][datapoint] === 'undefined') {
+                  return null;
+              }
+              else {
+                  return parseFloat(key_variable[0][datapoint]);
+              };
+          };
+
+          
+
+          var map = L.map('map').setView([37.7647993, -122.4629897], 13);
+
+          L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+              maxZoom: 18,
+              minZoom: 1,
+              attribution: 'Map data (c) <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+          }).addTo(map);
+
+          
+          function style_1(feature) {
+    return {
+        fillColor: 'blue',
+        weight: 1,
+        opacity: 0.2,
+        color: 'black',
+        fillOpacity: 0.7
+    };
+}
+          
+
+          
+          gJson_layer_1 = L.geoJson(gjson_1, {style: style_1,onEachFeature: onEachFeature}).addTo(map)
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+
+          
+
+      };
+
+   </script>
+</body>
