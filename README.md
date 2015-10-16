@@ -12,5 +12,5 @@ Wuga<br />
 
 Make it work
 ===
-1. To run this code, you need to import it as a eclipse project. you also need pydev.<br />
+1. To run this code, you need to import it as an existing eclipse project. you also need pydev.<br />
 2. Modify SFHousePrice/src/Constant/filelocations.py to rebuild path to DATA<br />
