@@ -18,12 +18,12 @@ def partition(df):
     points = np.array(Datalist)
     #print points
     vor = Voronoi(points)
-    sigma=1e15
+    sigma=1e5
     regions,vertices=Vorplots.voronoi_finite_polygons_2d(vor)
     bmamodel=[]
     for i in range(len(vor.points)):
         region_id=vor.point_region[i]
-        node=[regions[region_id],df['Price'][i],sigma,i]
+        node=[regions[i],df['Price'][i],sigma,i]
         bmamodel.append(node)
     return bmamodel,vertices,vor
 

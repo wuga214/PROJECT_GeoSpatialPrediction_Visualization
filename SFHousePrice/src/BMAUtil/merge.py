@@ -13,71 +13,52 @@ import vorpartition
 import copy
 
 from numpy.oldnumeric.rng_stats import variance
-def merge(ridge_points,previous_model):
-    pairs_to_merge=[]
-    min=1e10
-    for pairs in ridge_points:
-        temp=abs(float(previous_model[pairs[0]][1])-float(previous_model[pairs[1]][1]))
-        if min>temp:
-            min=temp
-            pairs_to_merge=pairs
-    ridge_points=ridge_points.tolist()
-    ridge_points.remove(pairs_to_merge.tolist())
-    ridge_points=np.array(ridge_points)
-    new_mu=(float(previous_model[pairs_to_merge[0]][1])+float(previous_model[pairs_to_merge[1]][1]))/2
-    if float(previous_model[pairs_to_merge[0]][1])!=float(previous_model[pairs_to_merge[1]][1]):
-        new_sigma=np.var([float(previous_model[pairs_to_merge[0]][1]),float(previous_model[pairs_to_merge[1]][1])])
-    else:
-        new_sigma=float(previous_model[pairs_to_merge[0]][2])
+def merge(pairs_to_merge,previous_model,original_model):
+    new_mu=[]
+    new_sigma=[]
+    for i in range(len(previous_model)):
+        if previous_model[i][3]==previous_model[pairs_to_merge[0]][3] or previous_model[i][3]==previous_model[pairs_to_merge[1]][3]:
+            new_mu.append(float(original_model[i][1]))
+            #new_mu=new_mu+1
+            new_sigma.append(float(original_model[i][1]))
+    new_mu=sum(new_mu)/len(new_mu)
+    new_sigma=np.var(new_sigma)
+    if(new_sigma==0):
+        new_sigma=1e5
     new_model=copy.deepcopy(previous_model)
     for node in new_model:
         if node[3]==new_model[pairs_to_merge[0]][3] or node[3]==new_model[pairs_to_merge[1]][3]:
             node[1]=new_mu
             node[2]=new_sigma
             node[3]= new_model[pairs_to_merge[0]][3]       
-    return new_model,ridge_points
+    return new_model
 
-# def rotate(l,n):
-#     return l[n:] + l[:n]
-# 
-# def region_merge(a,b,shared):
-#     minia=min(a.index(shared[0]),a.index(shared[1]))
-#     maxia=max(a.index(shared[0]),a.index(shared[1]))
-#     if not (minia==0 and maxia!=1):
-#         a=rotate(a,maxia)
-#     minib=min(b.index(shared[0]),b.index(shared[1]))
-#     maxib=max(b.index(shared[0]),b.index(shared[1]))
-#     if not (minib==0 and maxib!=1):
-#         b=rotate(b,maxib)
-#     if a[0]==b[0]:
-#         b=b[::-1]
-#     new_region=a+b[1:]
-#     new_region.pop()
-#     return new_region
-        
-# print 1e10
-# a = [1,2,3]
-# b = [1,4,3]
-# x= list(set(a) & set(b))
-# print x
-# x2=region_merge(a, b, x)
-# print x2
 
-# LOCATION=Constants.filelocations.GOOGLE_NOMINATIM_HOUSEPRICE
-# df=DO.readgeofile(LOCATION)
-# train,test,train_index,test_index=DO.dataseperator(df)
-# train=DP.elim(train)
-# train = train.reset_index(drop=True)
-# bmamodel,vertices,vor=vorpartition.partition(train)
-# ridge_points=vor.ridge_points
-# print len(ridge_points)
-# modellist=[]
-# modellist.append(copy.deepcopy(bmamodel))
-# bmamodel_old=bmamodel
-# for i in range(1000):
-#     bmamodel_new,ridge_points=merge(ridge_points,bmamodel_old)
-#     modellist.append(copy.deepcopy(bmamodel_new))
-#     bmamodel_old=bmamodel_new
-# print modellist[0]
-# print modellist[1000]
-# print len(ridge_points)
+def giveMeModels(bmamodel,vertices,vor):
+    ridge_points=vor.ridge_points
+    print len(ridge_points)
+    modellist=[]
+    modellist.append(copy.deepcopy(bmamodel))
+    bmamodel_old=bmamodel
+    while len(ridge_points)!=0:
+        pairs_to_merge=[]
+        min_difference=1e10
+        for pairs in ridge_points:
+            if float(bmamodel_old[pairs[0]][3])==float(bmamodel_old[pairs[1]][3]):
+                ridge_points=ridge_points.tolist()
+                ridge_points.remove(pairs.tolist())
+                ridge_points=np.array(ridge_points)            
+                continue
+            temp=abs(float(bmamodel_old[pairs[0]][1])-float(bmamodel_old[pairs[1]][1]))
+            if min_difference>temp:
+                min_difference=temp
+                pairs_to_merge=pairs
+        if len(ridge_points)==0:
+            break
+        bmamodel_new=merge(pairs_to_merge,bmamodel_old,modellist[0])
+        modellist.append(copy.deepcopy(bmamodel_new))
+        bmamodel_old=bmamodel_new
+        ridge_points=ridge_points.tolist()
+        ridge_points.remove(pairs_to_merge.tolist())
+        ridge_points=np.array(ridge_points)
+    return modellist
