@@ -36,6 +36,7 @@ def findpointregion(model,vertices,dataset):
     for data in datasetmatrix.tolist():
         for i in range(len(model)):
             if(BMAUtil.point_in_poly(float(data[1]),float(data[2]),model[i][0],vertices)):
+                #data region id should get from vor.point_region
                 dataregion.append(i);
                 break;
     return dataregion
