@@ -22,6 +22,7 @@ def partition(df):
     regions,vertices=Vorplots.voronoi_finite_polygons_2d(vor)
     bmamodel=[]
     for i in range(len(vor.points)):
+        #The problem is region_id is not used!
         region_id=vor.point_region[i]
         node=[regions[i],df['Price'][i],sigma,i]
         bmamodel.append(node)
