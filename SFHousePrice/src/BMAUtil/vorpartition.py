@@ -10,7 +10,7 @@ import Constants
 import DataOperation as DO
 import DataPreprocess as DP
 
-def partition(df):
+def partition(df,initial_var):
     
     Datalist=[]
     for i in df.index:
@@ -18,7 +18,7 @@ def partition(df):
     points = np.array(Datalist)
     #print points
     vor = Voronoi(points)
-    sigma=1e5
+    sigma=initial_var
     regions,vertices=Vorplots.voronoi_finite_polygons_2d(vor)
     bmamodel=[]
     for i in range(len(vor.points)):

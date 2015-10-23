@@ -11,6 +11,9 @@ def dataseperator(df):
     perm=np.random.permutation(range(1, len(df)))
     training_index=perm[:(len(df)-1)/2]
     testing_index=perm[(len(df)-1)/2:len(df)-1]
+#     perm=range(1,len(df))
+#     training_index=perm[:(len(df)-1)/2]
+#     testing_index=perm[(len(df)-1)/2:len(df)-1]
     house_price=[x.replace(",","") for x in df['Price']]
     house_price=[x[1:] for x in house_price]
     house_price=np.array(house_price)

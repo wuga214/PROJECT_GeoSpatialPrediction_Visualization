@@ -13,7 +13,7 @@ import vorpartition
 import copy
 
 from numpy.oldnumeric.rng_stats import variance
-def merge(pairs_to_merge,previous_model,original_model):
+def merge(pairs_to_merge,previous_model,original_model,initial_var):
     new_mu=[]
     new_sigma=[]
     for i in range(len(previous_model)):
@@ -24,7 +24,7 @@ def merge(pairs_to_merge,previous_model,original_model):
     new_mu=sum(new_mu)/len(new_mu)
     new_sigma=np.var(new_sigma)
     if(new_sigma==0):
-        new_sigma=1e5
+        new_sigma=initial_var
     new_model=copy.deepcopy(previous_model)
     for node in new_model:
         if node[3]==new_model[pairs_to_merge[0]][3] or node[3]==new_model[pairs_to_merge[1]][3]:

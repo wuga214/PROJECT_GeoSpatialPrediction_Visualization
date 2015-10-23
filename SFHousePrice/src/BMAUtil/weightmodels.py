@@ -11,6 +11,7 @@ import DataPreprocess as DP
 import vorpartition
 import copy
 import BMAUtil
+import plots
 
 def weight(models,vertices,validation):
     likelihoods=[]
@@ -56,13 +57,15 @@ def loggaussian(x, mu, sig_sqr):
 def prod(iterable):
     return reduce(operator.mul, iterable, 1)
 
-LOCATION=Constants.filelocations.GOOGLE_NOMINATIM_HOUSEPRICE
+initial_var=0.000001
+#LOCATION=Constants.filelocations.GOOGLE_NOMINATIM_HOUSEPRICE
+LOCATION=Constants.filelocations.SYNTHETIC_DATA
 df=DO.readgeofile(LOCATION)
 print 'File Reading'
 train,test,train_index,test_index=DO.dataseperator(df)
 train=DP.elim(train)
 train = train.reset_index(drop=True)
-bmamodel,vertices,vor=vorpartition.partition(train)
+bmamodel,vertices,vor=vorpartition.partition(train,initial_var)
 #######
 # print [vor.vertices[x] for x in vor.regions[vor.point_region[10]]]
 # print [vertices[x] for x in bmamodel[10][0]]
@@ -88,7 +91,7 @@ while len(ridge_points)!=0:
             pairs_to_merge=pairs
     if len(ridge_points)==0:
         break
-    bmamodel_new=BMAUtil.merge(pairs_to_merge,bmamodel_old,modellist[0])
+    bmamodel_new=BMAUtil.merge(pairs_to_merge,bmamodel_old,modellist[0],initial_var)
     modellist.append(copy.deepcopy(bmamodel_new))
     bmamodel_old=bmamodel_new
     ridge_points=ridge_points.tolist()
@@ -97,6 +100,11 @@ while len(ridge_points)!=0:
 print modellist[0]
 print modellist[-1]
 print 'model list generated'
-weights=weight(modellist,vertices,test[:1])
+weights=weight(modellist,vertices,test)
 print weights
 print sum(weights)
+print weights.index(max(weights))
+bestmodel= modellist[weights.index(max(weights))]
+print bestmodel
+plots.polygonplot(bestmodel,vertices)
+plots.lineplot(range(len(weights)),weights)

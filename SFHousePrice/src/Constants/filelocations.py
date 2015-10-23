@@ -17,3 +17,4 @@ class filelocations():
     MAP_HTML='/Users/Wuga/Documents/DATA/SFREHPDATA/index3.html'
     ORIGINIAL_HOUSEPRICE=r'/Users/Wuga/Documents/DATA/SFREHPDATA/HousingSales2012.csv'
     GEOJSON_CSV_DATA='/Users/Wuga/Documents/DATA/SFREHPDATA/pricedata.csv'
+    SYNTHETIC_DATA='/Users/Wuga/Documents/DATA/SFREHPDATA/syntheticdata.csv'
