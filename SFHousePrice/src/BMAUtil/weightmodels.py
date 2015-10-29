@@ -105,10 +105,13 @@ weights=weight(modellist,vertices,test)
 print weights
 print sum(weights)
 <<<<<<< HEAD
+<<<<<<< HEAD
 print weights.index(max(weights))
 bestmodel= modellist[weights.index(max(weights))]
 print bestmodel
 plots.polygonplot(bestmodel,vertices)
 plots.lineplot(range(len(weights)),weights)
+=======
+>>>>>>> origin/master
 =======
 >>>>>>> origin/master
