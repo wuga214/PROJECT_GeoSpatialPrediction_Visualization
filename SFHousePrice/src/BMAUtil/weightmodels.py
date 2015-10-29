@@ -37,6 +37,7 @@ def findpointregion(model,vertices,dataset):
     for data in datasetmatrix.tolist():
         for i in range(len(model)):
             if(BMAUtil.point_in_poly(float(data[1]),float(data[2]),model[i][0],vertices)):
+                #data region id should get from vor.point_region
                 dataregion.append(i);
                 break;
     return dataregion
@@ -103,8 +104,11 @@ print 'model list generated'
 weights=weight(modellist,vertices,test)
 print weights
 print sum(weights)
+<<<<<<< HEAD
 print weights.index(max(weights))
 bestmodel= modellist[weights.index(max(weights))]
 print bestmodel
 plots.polygonplot(bestmodel,vertices)
 plots.lineplot(range(len(weights)),weights)
+=======
+>>>>>>> origin/master
