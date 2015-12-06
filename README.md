@@ -8,7 +8,8 @@ Data was separated with code when implementing. Please modify src/Constant/filel
 To run
 ===
 There are several functions in this project.<br />
-1. To transform data with adresses into geo location postion(Latitude, Longitude), please run src/locating/google.py or   src/locating/osm.py. <br />
+1. To transform data with adresses into geolocation(Latitude, Longitude), please run src/locating/google.py<br /> 
+  or src/locating/osm.py. <br />
   They share same functionality, but with different performance. Open Street Map(OSM) is open source map system, but with limited ability to transform address to geo location. Google, on the other hand, has copyright issue, but powerful.<br />
 
 2. To eliminate duplicate data, please run src/datapreprocess/duplicate_eliminator.py<br /> 
