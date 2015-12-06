@@ -1,16 +1,26 @@
-# SG_SF_HousePrice
+# Visualization of Geo-Spacial Prediction project
 
-Hi All<br />
-
-Please see DATA/SFPRICEV/index3.html as a demo of voronoi map. <br />
-To generate new map, run SFHousePrice/src/MapCreating/build.py. It will generate three files: index3.html, autovoronoi.json and data.json <br />
-You need to modify index3.html manually to change the connection of those three files to relative location. <br />
-I haven't got time to write a readme. Check this site next week to see read me.<br />
-
-Cheers,<br />
-Wuga<br />
-
-Make it work
+Settings
 ===
-1. To run this code, you need to import it as an existing eclipse project. you also need pydev.<br />
-2. Modify SFHousePrice/src/Constant/filelocations.py to rebuild path to DATA<br />
+This project is written in Python through Eclipse IDE(Pydev is also required).<br />
+Data was separated with code when implementing. Please modify src/Constant/filelocations.py to rebuild path to DATA.<br />
+
+To run
+===
+There are several functions in this project.<br />
+1. To transform data with adresses into geo location postion(Latitude, Longitude), please run src/locating/google.py or src/locating/osm.py. <br>
+  They share same functionality, but with different performance. Open Street Map(OSM) is open source map system, but with limited ability to transform address to geo location. Google, on the other hand, has copyright issue, but powerful.<br />
+
+2. To eliminate duplicate data, please run src/datapreprocess/duplicate_eliminator.py<br /> 
+  Some geospacial prediction model doesn't support duplicate features in data. It would be good to remove them before taking data into algorithm. Also, creating voronoi diagram, you can not have two data point on same geo location position.<br />
+
+3. To create json file for visualization on map, please run src/vorplots/plot.py<br />
+  Geojson data is a special format of json, which can be added in map as extra layer and can be recognized by most of web browsers.<br />
+
+4. To create map for your data, please run src/MapCreating/build.py<br />
+  Note: you need to change value of geocoder.osm('dublin,ireland') by replacing 'dublin,ireland' to anywhere you are interested and also fit your data.<br />
+  The map will be generated in the place you setted in src/Constant/filelocations.py<br />
+
+Examples
+===
+
