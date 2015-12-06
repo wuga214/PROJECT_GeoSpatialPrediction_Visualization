@@ -23,4 +23,17 @@ There are several functions in this project.<br />
 
 Examples
 ===
+Dublin House Price Voronoi Diagram<br />
+![alt tag](https://github.com/wuga214/GeoSpatialPredictionVisualization/blob/master/dublin2013.png)
 
+San Francisco House Price Voronoi Diagram<br />
+![alt tag](https://github.com/wuga214/GeoSpatialPredictionVisualization/blob/master/houseprice.png)
+
+United States Temperature Voronoi Digram 01/01/2015<br />
+![alt tag](https://github.com/wuga214/GeoSpatialPredictionVisualization/blob/master/ustemperature.png)
+
+More alive examples can be found under folder DEMOs.
+
+Contects
+===
+[Email](wug2@oregonstate.edu)
