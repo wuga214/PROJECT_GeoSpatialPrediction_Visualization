@@ -41,4 +41,4 @@ Contects
 Mr.Wu<br />
 Oregon State University<br />
 U.S.A<br />
-[Email](wug2@oregonstate.edu)
+[Email](mailto:wug2@oregonstate.edu)
