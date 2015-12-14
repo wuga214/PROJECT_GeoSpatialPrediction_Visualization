@@ -18,6 +18,7 @@ class filelocations():
     ORIGINIAL_HOUSEPRICE=r'/Users/Wuga/Documents/DATA/SFREHPDATA/HousingSales2012.csv'
     GEOJSON_CSV_DATA='/Users/Wuga/Documents/DATA/SFREHPDATA/pricedata.csv'
     SYNTHETIC_DATA='/Users/Wuga/Documents/DATA/SFREHPDATA/syntheticdata.csv'
+    SYNTHETIC_DATA2='/Users/Wuga/Documents/DATASET/SFREHPDATA/syntheticdata2.csv'
     DUBLIN_2013='/Users/Wuga/Documents/DATA/BEN/dublin-2013-averages'
     DUBLIN_2012='/Users/Wuga/Documents/DATA/BEN/dublin-2012-averages'
     DUBLIN_2011='/Users/Wuga/Documents/DATA/BEN/dublin-2011-averages'
