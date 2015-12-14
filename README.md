@@ -36,6 +36,20 @@ United States Temperature Voronoi Digram 01/01/2015<br />
 
 More alive examples can be found under folder DEMOs.
 
+Synthetic Generator
+===
+Cliff<br />
+![alt tag](https://github.com/wuga214/GeoSpatialPredictionVisualization/blob/master/figure_1.png)
+
+Circles<br />
+![alt tag](https://github.com/wuga214/GeoSpatialPredictionVisualization/blob/master/figure_2.png)
+
+Stair<br />
+![alt tag](https://github.com/wuga214/GeoSpatialPredictionVisualization/blob/master/figure_3.png)
+
+Cake<br />
+![alt tag](https://github.com/wuga214/GeoSpatialPredictionVisualization/blob/master/figure_4.png)
+
 Contects
 ===
 Mr.Wu<br />
