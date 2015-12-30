@@ -1,2 +1,0 @@
-from plot import voronoiplot
-from finiteregions import voronoi_finite_polygons_2d
